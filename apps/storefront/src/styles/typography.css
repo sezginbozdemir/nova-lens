@@ -1,0 +1,129 @@
+.h2 {
+  font-family: var(--font-manrope);
+  font-size: 40.5px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 2%;
+  @media (max-width: 1024px) {
+    font-size: 32.4px;
+  }
+  @media (max-width: 768px) {
+    font-size: 28.8px;
+  }
+}
+
+.h3 {
+  font-family: var(--font-manrope);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 2%;
+  @media (max-width: 1024px) {
+    font-size: 23.4px;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.h4 {
+  font-family: var(--font-manrope);
+  font-size: 67.5px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 2%;
+  @media (max-width: 1024px) {
+    font-size: 54px;
+  }
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+}
+
+.h5 {
+  font-family: var(--font-manrope);
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 2%;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
+  @media (max-width: 768px) {
+    font-size: 27px;
+  }
+}
+
+.body {
+  font-family: var(--font-jost);
+  font-size: 16.2px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -1%;
+  @media (max-width: 1024px) {
+    font-size: 14.4px;
+  }
+}
+
+.menu-body {
+  font-family: var(--font-manrope);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -1%;
+  @media (max-width: 1024px) {
+    font-size: 16.2px;
+  }
+}
+
+.details {
+  font-family: var(--font-manrope);
+  font-size: 14.4px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 2%;
+  @media (max-width: 1024px) {
+    line-height: 120%;
+  }
+}
+
+.name-tag {
+  font-family: var(--font-manrope);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 2%;
+  @media (max-width: 1024px) {
+    font-size: 16.2px;
+  }
+}
+
+.price-title {
+  font-family: var(--font-jost);
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: -1%;
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+.cart-price {
+  font-family: var(--font-manrope);
+  font-size: 12.6px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -1%;
+}
+
+.review-body {
+  font-family: var(--font-manrope);
+  font-size: 14.4px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -1%;
+  @media (max-width: 1024px) {
+    font-size: 12.6px;
+  }
+}
