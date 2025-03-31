@@ -1,5 +1,6 @@
 import { getCategoryByHandle } from "@lib/data/categories"
 import { HttpTypes } from "@medusajs/types"
+import { getProductPrice } from "./get-product-price"
 
 interface MinPricedProduct extends HttpTypes.StoreProduct {
   _minPrice?: number
@@ -17,14 +18,30 @@ async function getCategories(filters: string) {
   const categoryResults = await Promise.all(categoryPromises)
   return categoryResults.filter((cat) => cat !== undefined)
 }
+function getActiveFilters(filters: string): string[] {
+  const filterArray = filters.split(",").map((filter) => filter.trim())
+  const activeFilters: string[] = []
+
+  if (filterArray.includes("new")) {
+    activeFilters.push("new")
+  }
+  if (filterArray.includes("sale")) {
+    activeFilters.push("sale")
+  }
+
+  return activeFilters
+}
 
 export async function filterProducts(
   products: HttpTypes.StoreProduct[],
   filters: string
 ): Promise<HttpTypes.StoreProduct[]> {
+  const today = new Date()
+  const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7))
   let filteredProducts = products as MinPricedProduct[]
 
   const productCategories = await getCategories(filters)
+  const activeFilters = getActiveFilters(filters)
 
   if (!filters) return filteredProducts
 
@@ -38,6 +55,22 @@ export async function filterProducts(
         (categoryProduct) => categoryProduct.id === product.id
       )
     )
+  }
+  if (activeFilters.includes("new")) {
+    filteredProducts = filteredProducts.filter((product) => {
+      const createdAt = product.created_at
+      if (createdAt) {
+        const productCreatedAt = new Date(createdAt)
+        return productCreatedAt >= sevenDaysAgo
+      }
+      return false
+    })
+  }
+  if (activeFilters.includes("sale")) {
+    filteredProducts = filteredProducts.filter((product) => {
+      const { cheapestPrice } = getProductPrice({ product })
+      return cheapestPrice?.price_type === "sale"
+    })
   }
   const filterGroups: Record<string, any[]> = {}
 

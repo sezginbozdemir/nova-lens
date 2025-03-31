@@ -9,14 +9,22 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "jsonwebtoken": "^9.0.2",
     "prettier": "^3.5.3",
     "turbo": "^2.4.4",
     "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@medusajs/auth-emailpass": "^2.6.1"
   },
   "engines": {
     "node": ">=18"
   },
   "packageManager": "npm@11.2.0",
+  "overrides": {
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"

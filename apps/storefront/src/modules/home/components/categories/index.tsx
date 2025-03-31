@@ -7,11 +7,11 @@ const Categories = ({ categories }: { categories: any[] }) => {
     <div className="flex flex-col items-center justify-between content-container w-full gap-[4rem] mt-[5rem] mb-[5rem]">
       <span className="h2 text-white uppercase">Futuristic collections</span>
 
-      <ul className="flex gap-12 w-full h-[460px]">
+      <ul className="flex gap-12 justify-between w-full h-[460px] overflow-x-scroll no-scrollbar min-w-full">
         {categories.map((c) => {
           return (
             <li
-              className="w-full p-[1px] rounded-[20px]  bg-gradient-to-b from-[#774ADF] to-[#FFFFFF]"
+              className="w-[350px] flex-shrink-0 p-[1px] rounded-[20px]  bg-gradient-to-b from-[#774ADF] to-[#FFFFFF]"
               key={c.id}
             >
               <Link href={`/categories/${c.handle}`}>

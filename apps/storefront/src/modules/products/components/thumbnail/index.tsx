@@ -94,6 +94,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 
   const handleWishlistClick = async (e: React.MouseEvent<HTMLImageElement>) => {
     e.preventDefault()
+    console.log(variantId)
     if (!customer) {
       if (!variantId) {
         return
@@ -130,7 +131,6 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           headers: {
             ...headers,
             "x-publishable-api-key": PUBLISHABLE_API_KEY!,
-            "Content-Type": "application/json",
           },
           body: JSON.stringify({}),
         })
@@ -231,7 +231,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
     >
       <div className="group w-full h-full bg-[#4b405f] hover:bg-[#09080a]  rounded-[15px] backdrop-blur-[14px]">
         {!isWishlistPage && (
-          <div className="absolute body bottom-[1.5rem] py-[0.5rem] px-[1.5rem] left-[25%] border rounded-[100px] bg-transparent hidden group-hover:flex items-center justify-center text-white capitalize">
+          <div className="transform -translate-x-[50%] w-[130px] h-[30px] absolute  body bottom-[0.5rem] xmsall:bottom-[1.5rem] left-[50%] border rounded-[100px] bg-transparent hidden group-hover:flex items-center justify-center text-white capitalize">
             View Details
           </div>
         )}
@@ -246,7 +246,8 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         />
         {!isWishlistPage &&
           created_at &&
-          new Date(created_at) >= sevenDaysAgo && (
+          (new Date(created_at) >= sevenDaysAgo ||
+            cheapestPrice?.price_type === "sale") && (
             <div
               onClick={(e) => {
                 e.preventDefault()

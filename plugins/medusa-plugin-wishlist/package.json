@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-wishlist",
+  "name": "medusa-wishlist-plugin",
   "version": "0.2.0",
   "description": "Plugin for wishlist functionality in Medusa.",
   "author": "Shahed Nasser <shahednasser@gmail.com>",
@@ -22,15 +22,44 @@
     "dev": "medusa plugin:develop",
     "prepublishOnly": "medusa plugin:build"
   },
+  "devDependencies": {
+    "@medusajs/admin-sdk": "2.6.1",
+    "@medusajs/cli": "2.6.1",
+    "@medusajs/framework": "2.6.1",
+    "@medusajs/icons": "2.6.1",
+    "@medusajs/medusa": "2.6.1",
+    "@medusajs/test-utils": "2.6.1",
+    "@medusajs/js-sdk": "2.6.1",
+    "@medusajs/ui": "4.0.6",
+    "@mikro-orm/cli": "6.4.3",
+    "@mikro-orm/core": "6.4.3",
+    "@mikro-orm/knex": "6.4.3",
+    "@mikro-orm/migrations": "6.4.3",
+    "@mikro-orm/postgresql": "6.4.3",
+    "@swc/core": "1.5.7",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.2.25",
+    "awilix": "^8.0.1",
+    "pg": "^8.13.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.2.11",
+    "yalc": "^1.0.0-pre.53"
+  },
   "peerDependencies": {
     "@medusajs/admin-sdk": "2.6.1",
     "@medusajs/cli": "2.6.1",
     "@medusajs/framework": "2.6.1",
     "@medusajs/icons": "2.6.1",
-    "@medusajs/js-sdk": "2.6.1",
     "@medusajs/medusa": "2.6.1",
     "@medusajs/test-utils": "2.6.1",
     "@medusajs/ui": "4.0.6",
+    "@medusajs/js-sdk": "2.6.1",
     "@mikro-orm/cli": "6.4.3",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
@@ -44,7 +73,5 @@
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
-  },
-  "packageManager": "yarn@3.2.3+sha512.f26f951f67de0c6a33ee381e5ff364709c87e70eb5e65c694e4facde3512f1fa80b8679e6ba31ce7d340fbb46f08dd683af9457e240f25a204be7427940d767e",
-  "yalcSig": "f4031b47236cfcbe3679cbc7d93ab31e"
+  }
 }

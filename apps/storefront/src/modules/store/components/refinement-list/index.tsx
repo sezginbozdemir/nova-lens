@@ -64,10 +64,12 @@ const RefinementList = ({
   const [isOpenFilter, setIsOpenFilter] = useState(false)
 
   return (
-    <div className="flex justify-between py-4 mb-8 small:px-0 pl-6 mr-[3rem] ml-[3rem]">
-      <FilterTabs setQueryParams={setQueryParams} />
+    <div className="flex gap-[2rem] xsmall:flex-row flex-col xsmall:justify-between py-4 mb-8 small:px-0 pl-6 mr-[3rem] ml-[3rem]">
+      <div className="self-start">
+        <FilterTabs clear={clearAllFilters} setQueryParams={setQueryParams} />
+      </div>
 
-      <div className="flex gap-12 justify-between">
+      <div className="flex gap-12 self-end xsmall:justify-between">
         <SortProducts
           isOpenFilter={isOpenFilter}
           setIsOpenFilter={setIsOpenFilter}
