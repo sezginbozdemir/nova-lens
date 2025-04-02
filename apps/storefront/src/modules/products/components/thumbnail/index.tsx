@@ -94,7 +94,6 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 
   const handleWishlistClick = async (e: React.MouseEvent<HTMLImageElement>) => {
     e.preventDefault()
-    console.log(variantId)
     if (!customer) {
       if (!variantId) {
         return
@@ -214,7 +213,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <Container
       className={clx(
-        "relative w-full overflow-hidden shadow-[0px_18px_27px_0px_rgba(156,82,242,0.2)] rounded-[15px] bg-gradient-to-b from-[#9C52F2] to-[#FFFFFF] p-[1px]",
+        "w-full overflow-hidden shadow-[0px_18px_27px_0px_rgba(156,82,242,0.2)] rounded-[15px] bg-gradient-to-b from-[#9C52F2] to-[#FFFFFF] p-[1px]",
         css.container,
         className,
         {
@@ -229,7 +228,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
       )}
       data-testid={dataTestid}
     >
-      <div className="group w-full h-full bg-[#4b405f] hover:bg-[#09080a]  rounded-[15px] backdrop-blur-[14px]">
+      <div className="relative group w-full h-full bg-[#4b405f] hover:bg-[#09080a]  rounded-[15px] backdrop-blur-[14px]">
         {!isWishlistPage && (
           <div className="transform -translate-x-[50%] w-[130px] h-[30px] absolute  body bottom-[0.5rem] xmsall:bottom-[1.5rem] left-[50%] border rounded-[100px] bg-transparent hidden group-hover:flex items-center justify-center text-white capitalize">
             View Details
@@ -239,7 +238,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         <Image
           src={heartImage}
           width={25}
-          height={25}
+          height={23}
           alt="Nova Lens"
           className={css.heart}
           onClick={handleWishlistClick}

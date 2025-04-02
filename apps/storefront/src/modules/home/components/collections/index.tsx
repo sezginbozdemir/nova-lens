@@ -29,6 +29,9 @@ const Collections = ({ collections }: { collections: any[] }) => {
           const blurImage = blurImages[index % blurImages.length]
           const description = descriptions[index % descriptions.length]
 
+          let h = 335
+          h = c.handle === "kelly" ? 350 : c.handle === "rihanna" ? 297 : h
+
           return (
             <li
               key={c.id}
@@ -75,7 +78,7 @@ const Collections = ({ collections }: { collections: any[] }) => {
                 <Image
                   src={`/images/${c.handle}-01.png`}
                   width={350}
-                  height={350}
+                  height={h}
                   alt="Nova Lens"
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1]"
                 />

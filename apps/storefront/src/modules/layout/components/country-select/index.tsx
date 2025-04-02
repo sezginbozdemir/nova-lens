@@ -111,7 +111,7 @@ const CountrySelect = ({
                 <Image
                   src="/icons/down.png"
                   width={8}
-                  height={8}
+                  height={6}
                   alt="Nova Lens"
                 />
               </span>

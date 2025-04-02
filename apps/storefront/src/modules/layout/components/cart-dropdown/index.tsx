@@ -85,7 +85,7 @@ const CartDropdown = ({
             href="/cart"
             data-testid="nav-cart-link"
           >
-            <Image src="/icons/cart.png" width={20} height={20} alt="Cart" />
+            <Image src="/icons/cart.png" width={20} height={24} alt="Cart" />
             {`(${totalItems})`}
           </LocalizedClientLink>
         </PopoverButton>

@@ -36,9 +36,9 @@ const FilterRadioGroup = ({
         <Image
           src={iconSrc}
           width={15}
-          height={7}
+          height={27}
           alt="Nova Lens"
-          className="object-contain"
+          className=" object-contain"
         />
       </div>
       {isOpen && (

@@ -7,16 +7,17 @@ import ProductPreview from "@modules/products/components/product-preview"
 
 export default async function ProductRail({
   region,
-  types,
+  type,
 }: {
   region: HttpTypes.StoreRegion
-  types: string[]
+  type: string
 }) {
   const {
     response: { products: pricedProducts },
   } = await listProducts({
     regionId: region.id,
     queryParams: {
+      limit: 9999,
       fields: "*variants.calculated_price",
     } as HttpTypes.FindParams,
   })
@@ -49,35 +50,26 @@ export default async function ProductRail({
         return []
     }
   }
-  const getTypeLabel = (type: string) => {
-    switch (type) {
-      case "sale":
-        return "SALE"
-      case "new":
-        return "NEW"
-      default:
-        return type.toUpperCase()
-    }
-  }
-  const filteredProducts = getFilteredProducts(types[0])
+
+  const filteredProducts = getFilteredProducts(type)
   const headers = {
     ...(await getAuthHeaders()),
   }
 
   return (
-    <div className="content-container py-12 small:py-24">
+    <div className="content-container">
       <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-6 gap-y-24 small:gap-y-36">
-        {types[0] === "sale" && (
+        {type === "sale" && (
           <li className="flex flex-col gap-[1rem] items-center justify-center text-center">
             <div
-              className="h4"
+              className="h4 uppercase"
               style={{
                 background: "var(--gradient-accent)",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
               }}
             >
-              {getTypeLabel(types[0])}
+              {type}
             </div>
             <InteractiveLink href={`/store`}>View all</InteractiveLink>
           </li>
@@ -93,19 +85,21 @@ export default async function ProductRail({
             />
           </li>
         ))}
-        {types[0] === "new" && (
+        {type === "new" && (
           <li className="flex flex-col gap-[1rem] items-center justify-center text-center">
             <div
-              className="h4"
+              className="h4 uppercase"
               style={{
                 background: "var(--gradient-accent)",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
               }}
             >
-              {getTypeLabel(types[0])}
+              {type}
             </div>
-            <InteractiveLink href={`/store`}>View all</InteractiveLink>
+            <div className="z-[9999]">
+              <InteractiveLink href={`/store`}>View all</InteractiveLink>
+            </div>
           </li>
         )}
       </ul>

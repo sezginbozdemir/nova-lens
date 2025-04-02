@@ -29,7 +29,7 @@ export default async function Footer() {
               <Image
                 src="/images/logo.png"
                 width={130}
-                height={40}
+                height={37}
                 alt="Nova Lens"
               />
             </LocalizedClientLink>

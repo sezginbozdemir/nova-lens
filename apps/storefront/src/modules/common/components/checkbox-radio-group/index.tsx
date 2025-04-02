@@ -42,7 +42,6 @@ const CheckboxRadioGroup = ({
       .some((v) => v === `${category}-${filterValue}`)
   }
 
-  console.log(value)
   return (
     <div className="relative flex flex-col gap-y-3">
       <div
@@ -53,7 +52,7 @@ const CheckboxRadioGroup = ({
         <Image
           src={iconSrc}
           width={15}
-          height={7}
+          height={11}
           alt="Filter icon"
           className="object-contain"
         />

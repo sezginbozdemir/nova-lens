@@ -62,6 +62,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
             width={135}
             height={95}
             alt="Nova Lens"
+            style={{ width: "auto", height: "auto" }}
           />
         </LocalizedClientLink>
       </Table.Cell>

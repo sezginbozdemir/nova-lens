@@ -1,5 +1,4 @@
 "use client"
-
 import { addToCart } from "@lib/data/cart"
 import { useIntersection } from "@lib/hooks/use-in-view"
 import { HttpTypes } from "@medusajs/types"
@@ -16,6 +15,7 @@ type ProductActionsProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
   disabled?: boolean
+  setVariant: (variant: HttpTypes.StoreProductVariant | undefined) => void
 }
 
 const optionsAsKeymap = (
@@ -30,10 +30,12 @@ const optionsAsKeymap = (
 export default function ProductActions({
   product,
   disabled,
+  setVariant,
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
+  const [quantity, setQuantity] = useState<number>(1)
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
@@ -42,7 +44,6 @@ export default function ProductActions({
       setOptions(variantOptions ?? {})
     }
   }, [product.variants])
-
   const selectedVariant = useMemo(() => {
     if (!product.variants || product.variants.length === 0) {
       return
@@ -53,6 +54,11 @@ export default function ProductActions({
       return isEqual(variantOptions, options)
     })
   }, [product.variants, options])
+  useEffect(() => {
+    if (selectedVariant) {
+      setVariant(selectedVariant)
+    }
+  }, [selectedVariant, setVariant])
 
   // update the options when a variant is selected
   const setOptionValue = (optionId: string, value: string) => {
@@ -60,6 +66,7 @@ export default function ProductActions({
       ...prev,
       [optionId]: value,
     }))
+    setQuantity(1)
   }
 
   //check if the selected options produce a valid variant
@@ -106,13 +113,12 @@ export default function ProductActions({
 
     await addToCart({
       variantId: selectedVariant.id,
-      quantity: 1,
+      quantity: quantity,
       countryCode,
     })
-
+    setQuantity(1)
     setIsAdding(false)
   }
-
   return (
     <>
       <div className="flex flex-col gap-y-2" ref={actionsRef}>
@@ -137,33 +143,60 @@ export default function ProductActions({
             </div>
           </div>
         )}
+        <div className="flex gap-[2rem] items-center justify-start">
+          <div className="border rounded-[100px] w-[100px] h-[45px] flex justify-around items-center body text-white px-[1rem]">
+            <button
+              disabled={!selectedVariant}
+              onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+              className="cursor-pointer"
+            >
+              -
+            </button>
+            <span>{quantity}</span>
+            <button
+              disabled={!selectedVariant}
+              onClick={() =>
+                setQuantity((prev) =>
+                  Math.min(selectedVariant?.inventory_quantity ?? 1, prev + 1)
+                )
+              }
+              className="cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+          <Button
+            onClick={handleAddToCart}
+            disabled={
+              !inStock ||
+              !selectedVariant ||
+              !!disabled ||
+              isAdding ||
+              !isValidVariant
+            }
+            variant="primary"
+            className="w-[190px] flex gap-3 h-[60px] rounded-[100px]  bg-[#FCFAFF] body text-[var(--accent)] hover:bg-white"
+            isLoading={isAdding}
+            data-testid="add-product-button"
+          >
+            {!isAdding && (
+              <>
+                {selectedVariant === undefined && options.length === undefined
+                  ? "Select variant"
+                  : !inStock || !isValidVariant
+                  ? "Out of stock"
+                  : "Add to cart"}
+                <Image
+                  src="/icons/cart-gradient.png"
+                  width={20}
+                  height={20}
+                  alt="Nova Lens"
+                />
+              </>
+            )}{" "}
+          </Button>
+        </div>
 
-        <Button
-          onClick={handleAddToCart}
-          disabled={
-            !inStock ||
-            !selectedVariant ||
-            !!disabled ||
-            isAdding ||
-            !isValidVariant
-          }
-          variant="primary"
-          className="w-[190px] h-[60px] rounded-[100px]  bg-[#FCFAFF] body text-[var(--accent)] hover:bg-white"
-          isLoading={isAdding}
-          data-testid="add-product-button"
-        >
-          {!selectedVariant && !options
-            ? "Select variant"
-            : !inStock || !isValidVariant
-            ? "Out of stock"
-            : "Add to cart"}{" "}
-          <Image
-            src="/icons/cart-gradient.png"
-            width={20}
-            height={20}
-            alt=" Nova Lens"
-          />
-        </Button>
         <div className="text-white cart-price opacity-[0.8] mt-[2rem]">
           Delivery in 3-6 working days. Free shipping over $150
         </div>

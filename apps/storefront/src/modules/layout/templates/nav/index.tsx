@@ -13,21 +13,25 @@ export default async function Nav() {
   const customer = await retrieveCustomer()
 
   return (
-    <div className="top-0 inset-x-0 z-50 group">
+    <div className="top-0 inset-x-0 group">
       <header className="relative h-16 mx-auto duration-200">
         <nav className="content-container flex items-center justify-between w-full h-full">
           <div className="flex-1 basis-0 h-full flex xsmall:hidden items-center">
-            <div className="h-full">
+            <div className="h-full z-[9999]">
               <SideMenu regions={regions} />
             </div>
           </div>
 
           <div className="xsmall:flex items-center h-full hidden">
-            <LocalizedClientLink href="/" data-testid="nav-store-link">
+            <LocalizedClientLink
+              className="z-[90000]"
+              href="/"
+              data-testid="nav-store-link"
+            >
               <Image
                 src="/images/logo.png"
                 width={100}
-                height={30}
+                height={28}
                 alt="Nova Lens"
               />
             </LocalizedClientLink>
@@ -40,19 +44,20 @@ export default async function Nav() {
               Products
             </LocalizedClientLink>
             <LocalizedClientLink href="/" className="text-white menu-body">
-              Contacts
+              Contact
             </LocalizedClientLink>
           </div>
 
           <div className="flex items-center gap-x-6 h-full">
             <LocalizedClientLink
+              className="z-[9000]"
               href={customer ? "/account/wishlist" : "/wishlist"}
               data-testid="nav-account-link"
             >
               <Image
                 src="/icons/heart.png"
                 width={20}
-                height={20}
+                height={18}
                 alt="Nova Lens"
               />
             </LocalizedClientLink>
@@ -66,7 +71,7 @@ export default async function Nav() {
                   <Image
                     src="/icons/cart.png"
                     width={20}
-                    height={20}
+                    height={24}
                     alt="Nova Lens"
                   />{" "}
                   (0)
@@ -78,13 +83,14 @@ export default async function Nav() {
 
             <div className="hidden small:flex items-center gap-x-6 h-full">
               <LocalizedClientLink
+                className="z-[9999]"
                 href="/account"
                 data-testid="nav-account-link"
               >
                 <Image
                   src="/icons/account.png"
                   width={20}
-                  height={20}
+                  height={24}
                   alt="Nova Lens"
                 />
               </LocalizedClientLink>

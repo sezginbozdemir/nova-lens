@@ -35,13 +35,12 @@ const WishlistTemplate = ({
   const router = useRouter()
 
   useEffect(() => {
-    if (customer) {
-      router.push("/account/wishlist")
-    } else {
-      router.push("/wishlist")
-    }
-  }, [customer, router])
+    const path = customer ? "/account/wishlist" : "/wishlist"
 
+    if (window.location.pathname !== path) {
+      router.push(path)
+    }
+  }, [])
   const [wishlistData, setWishlistData] = useState<WishlistItem[]>([])
   const [wishlist, setWishlist] = useState<string[]>([])
 

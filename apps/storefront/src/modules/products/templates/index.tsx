@@ -1,14 +1,10 @@
-import React, { Suspense } from "react"
-
+import React from "react"
 import ImageGallery from "@modules/products/components/image-gallery"
-import ProductActions from "@modules/products/components/product-actions"
-import ProductTabs from "@modules/products/components/product-tabs"
-import ProductInfo from "@modules/products/templates/product-info"
-import { notFound } from "next/navigation"
-import ProductActionsWrapper from "./product-actions-wrapper"
 import { HttpTypes } from "@medusajs/types"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import ClientReviews from "../components/client-reviews"
+import { notFound } from "next/navigation"
+import StateWrapper from "../components/state-wrapper"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -21,10 +17,10 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   region,
   countryCode,
 }) => {
+  console.log(product)
   if (!product || !product.id) {
     return notFound()
   }
-
   return (
     <>
       <div className="opacity-[0.8] content-container body text-white mt-[3rem] mb-[1rem]">
@@ -39,25 +35,13 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ImageGallery images={product?.images || []} />
           </div>
           <div className="flex flex-col w-full gap-[5rem]">
-            <ProductInfo product={product} />
-            <ProductTabs product={product} />
-            <Suspense
-              fallback={
-                <ProductActions
-                  disabled={true}
-                  product={product}
-                  region={region}
-                />
-              }
-            >
-              <ProductActionsWrapper id={product.id} region={region} />
-            </Suspense>
+            <StateWrapper product={product} region={region} />
           </div>
         </div>
       </div>
       <ClientReviews />
       <div
-        className="content-container my-16 small:my-32"
+        className="my-16 small:my-32"
         data-testid="related-products-container"
       >
         <FeaturedProducts region={region} />
