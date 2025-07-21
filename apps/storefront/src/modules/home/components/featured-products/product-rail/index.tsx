@@ -71,7 +71,9 @@ export default async function ProductRail({
             >
               {type}
             </div>
-            <InteractiveLink href={`/store`}>View all</InteractiveLink>
+            <div className="z-[9999]">
+              <InteractiveLink href={`/store`}>View all</InteractiveLink>
+            </div>
           </li>
         )}
         {filteredProducts.map(({ product, cheapestPrice }) => (

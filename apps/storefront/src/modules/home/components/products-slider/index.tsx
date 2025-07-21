@@ -92,7 +92,7 @@ export default function ProductsSlider({ products }: ProductsSliderProps) {
           className="w-[300px] xsmall:w-[630px]"
         />
 
-        <div className="body opacity-[0.8] xsmall:w-1/3 w-2/3 text-white z-[5000]">
+        <div className="body opacity-[0.8] xsmall:w-1/3 w-2/3 text-white z-[1000]">
           Experience cutting-edge designs, vibrant colors, and unparalleled
           comfort. Elevate your look and embrace innovation with NovaLens
         </div>

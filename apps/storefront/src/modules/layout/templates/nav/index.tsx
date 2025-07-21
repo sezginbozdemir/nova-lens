@@ -17,7 +17,7 @@ export default async function Nav() {
       <header className="relative h-16 mx-auto duration-200">
         <nav className="content-container flex items-center justify-between w-full h-full">
           <div className="flex-1 basis-0 h-full flex xsmall:hidden items-center">
-            <div className="h-full z-[9999]">
+            <div className="h-[1rem] z-[9999]">
               <SideMenu regions={regions} />
             </div>
           </div>
@@ -43,7 +43,10 @@ export default async function Nav() {
             <LocalizedClientLink href="/store" className="text-white menu-body">
               Products
             </LocalizedClientLink>
-            <LocalizedClientLink href="/" className="text-white menu-body">
+            <LocalizedClientLink
+              href="/contact"
+              className="text-white menu-body"
+            >
               Contact
             </LocalizedClientLink>
           </div>

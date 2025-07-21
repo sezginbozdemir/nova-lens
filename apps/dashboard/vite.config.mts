@@ -2,6 +2,7 @@ import inject from "@medusajs/admin-vite-plugin";
 import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
 import inspect from "vite-plugin-inspect";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
